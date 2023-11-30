@@ -1,0 +1,11 @@
+{ "Host":"127.0.0.1",
+  "Port":3306,
+  "User":"root",
+  "Passwd":"root999",
+  "Db":"iportal",
+  "Profile":"1min",
+  "UseLog":1,
+  "UseLogEvent":1,
+  "Log":"C:\\ZVV\\projects\\at09\\ws\\logger\\__test\\log\\server.arh.log",
+  "LogEvent":"C:\\ZVV\\projects\\at09\\ws\\logger\\__test\\log\\server.ev.log"
+}

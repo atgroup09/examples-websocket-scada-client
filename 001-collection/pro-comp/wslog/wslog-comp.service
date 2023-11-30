@@ -1,0 +1,13 @@
+[Unit]
+Description=wslog-comp
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/wslog-comp --config /usr/local/etc/wslog.conf.d/comp/config.json --sname WsLogComp --sdesc WsLogComp
+User=opi
+Group=opi
+StandardOutput=syslog
+
+[Install]
+WantedBy=multi-user.target

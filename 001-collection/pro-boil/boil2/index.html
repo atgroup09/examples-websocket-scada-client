@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="ATgroup09" />
+<meta name="copyright" content="&copy;ATgroup09, 2019" />
+<meta name="contact" content="atgroup09@gmail.com" />
+<meta name="description" content="Информационный портал (портфолио, предложение по автоматизации)" />
+<meta name="keywords" content="АСУ ТП, АСКУ ТКП, предложение, диспетчеризация, мониторинг, автоматика, автоматизация, котельная, котельные, мнемосхема, мнемосхемы, HMI, ModBus, контроллеры, контроллер, ПЛК, СПК, панель, сенсорные панели, SCADA, ICP DAS, i7000, Овен, Weintek, Schneider Electric, Siemens" />
+<meta name="resource-type" content="document" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- LIBRARIES -->
+<script type="text/javascript" src="../../lib/js/regexp/regexp.js"></script>
+<script type="text/javascript" src="../../lib/js/types/types.js"></script>
+<script type="text/javascript" src="../../lib/js/screen/screen.js"></script>
+<script type="text/javascript" src="../../lib/js/dom/dom.js"></script>
+<script type="text/javascript" src="../../lib/js/bit.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../lib/js/date.format.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery-mobile/jquery.mobile.min.js"></script>
+
+<!-- MODULES -->
+<script type="text/javascript" src="../../mod/debug.min.js"></script>
+<script type="text/javascript" src="../../mod/log.min.js"></script>
+<script type="text/javascript" src="../../mod/popup-dialog.min.js"></script>
+<script type="text/javascript" src="../../mod/hmi-v2.min.js"></script>
+<script type="text/javascript" src="../../mod/form-v2.min.js"></script>
+<script type="text/javascript" src="res.js"></script>
+<script type="text/javascript" src="main.min.js"></script>
+
+<!-- CSS-styles -->
+<style type="text/css">@import "../../lib/js/jquery-mobile/fonts-googleapis-opensans.css";</style>
+<style type="text/css">@import "../../lib/js/jquery-mobile/jquery.mobile.min.css";</style>
+<style type="text/css">@import "../../lib/js/jquery-mobile/jqm-demos.css";</style>
+<style type="text/css">@import "../../lib/js/jquery-ui/jquery-ui.min.css";</style>
+<style type="text/css">@import "main.min.css";</style>
+
+<title>Котельная (объект 2)</title>
+</head>
+
+<body>
+
+<!-- page -->
+<div data-role="page" data-theme="a" class="my-page">
+	
+	<!-- header -->
+	<div data-role="header" data-position="fixed" data-theme="b" data-tap-toggle="false" >
+		<a href="#nav-panel-left" class="ui-btn ui-btn-icon-right ui-icon-bars ui-btn-icon-notext ui-corner-all" title="Меню">Меню</a>
+		<div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-right">
+            <a href="#" class="ui-btn ui-btn-icon-right ui-icon-disconnected ui-btn-icon-notext ui-noactive" id="ConnectState">Связь</a>
+			<a href="#nav-panel-right" class="ui-btn ui-btn-icon-right ui-icon-eye ui-btn-icon-notext" title="Настройки">Настройки</a>
+        </div>
+		<h1>Котельная :: <u>Объект #2</u></h1>
+	</div>
+	<!-- /header -->
+	
+	<!-- content -->
+	<div role="main" class="ui-content">
+		<div class="ui-bar ui-bar-a ui-corner-all ui-main-placeholder">
+			<div id="RootCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a ui-bar-main">
+					<img src="images/main.png" />
+					<div id="Res_t" class="ui-abs-100 ui-abs-text-x ui-color-red">прямая</div>
+					<div id="Ret_t" class="ui-abs-100 ui-abs-text-x ui-color-blue">обратная</div>
+					<div id="Ext_t" class="ui-abs-100 ui-abs-text-x ui-color-blue2">подпитка</div>
+					<div id="Clw_t" class="ui-abs-100 ui-abs-text-x ui-color-blue2">ХВС</div>
+					<div id="Y1_t" class="ui-abs-100 ui-abs-text-x ui-color-black">Y1</div>
+					<div id="H1_t" class="ui-abs-100 ui-abs-text-x ui-color-black">H1</div>
+					<div id="H2_t" class="ui-abs-100 ui-abs-text-x ui-color-black">H2</div>
+					<div id="B1_t" class="ui-abs-100 ui-abs-text-y ui-color-black">котел #1</div>
+					<div id="B2_t" class="ui-abs-100 ui-abs-text-y ui-color-black">котел #2</div>
+					<div id="Pwr_t" class="ui-abs-100 ui-abs-text-u ui-color-black">питание</div>
+					<div id="Tloc_t" class="ui-abs-100 ui-abs-text-x ui-color-black">T<sub>мест</sub></div>
+					<img id="Y1Al" log-res-target="Y1" log-res-msg="StRev" class="ui-abs-300" src="images/warning-min.png" />
+					<img id="Y1St" log-res-target="Y1" log-res-msg="St" class="ui-abs-100" src="images/valve-red.png" src0="images/valve-red.png" src1="images/valve-green.png" />
+					<img id="PwrAl" log-res-target="Pwr" log-res-msg="StRev" class="ui-abs-300" src="images/warning-min.png" />
+					<img id="PwrSt" log-res-target="Pwr" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" />
+					<img id="B1Al" log-res-target="B1" log-res-msg="StRev" class="ui-abs-300" src="images/warning.png" />
+					<img id="B1St" log-res-target="B1" log-res-msg="St" class="ui-abs-100" src="images/gears.png" />
+					<img id="B1Fi" log-res-target="Fi1" log-res-msg="StRev" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" />
+					<img id="B2Al" log-res-target="B2" log-res-msg="StRev" class="ui-abs-300" src="images/warning.png" />
+					<img id="B2St" log-res-target="B2" log-res-msg="St" class="ui-abs-100" src="images/gears.png" />
+					<img id="B2Fi" log-res-target="Fi2" log-res-msg="StRev" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" />
+					<img id="H1St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" />
+					<img id="H2St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" />
+					<div id="Ps1Al" class="ui-none" log-res-target="B1" log-res-msg="StPsRev"></div>
+					<div id="Ps1St" class="ui-none" log-res-target="B1" log-res-msg="StPs"></div>
+					<div id="Ps2Al" class="ui-none" log-res-target="B2" log-res-msg="StPsRev"></div>
+					<div id="Ps2St" class="ui-none" log-res-target="B2" log-res-msg="StPs"></div>
+					<div id="TlocBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Tloc">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PresBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Pres">0.00</th>
+								</tr>
+								<tr>
+									<td>бар</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="TresBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Tres">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PretBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Pret">0.00</th>
+								</tr>
+								<tr>
+									<td>бар</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="TretBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Tret">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PextBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Pext">0.00</th>
+								</tr>
+								<tr>
+									<td>бар</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="LogCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a">
+					<div class="ui-corner-all custom-corners">
+						<div class="ui-bar ui-bar-y">
+							<h3>Журнал событий</h3>
+						</div>
+						<div class="ui-body ui-body-a ui-main-log">
+							<table class="ui-table-z" id="LogTable">
+								<caption />
+								<thead />
+								<tfoot />
+								<tbody />
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /content -->
+	
+	<!-- footer -->
+	<div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+		<a href="../index.html" target="_top" rel="external" data-icon="carat-l" data-iconpos="notext" title="Назад к экрану [Котельная]">Back</a>
+	</div>
+	<!-- /footer -->
+	
+	<!-- nav-panel::left -->
+	<div id="nav-panel-left" data-role="panel" data-position-fixed="true" data-display="push" data-theme="b">
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Подробно</li>
+			<li><a href="../boil1/index.html" target="_top" rel="external">Объект #1</a></li>
+			<li data-role="list-divider" data-theme="b">Объект #2</li>
+			<li><a href="../boil3/index.html" target="_top" rel="external">Объект #3</a></li>
+		</ul>
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Назад к экрану</li>
+			<li><a href="../index.html" target="_top" rel="external">Котельная</a></li>
+			<li><a href="../../index.html" target="_top" rel="external">Главное меню</a></li>
+		</ul>
+	</div>
+	<!-- /nav-panel::left -->
+	
+	<!-- nav-panel::right -->
+	<div id="nav-panel-right" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a">
+		<form id="FormSet">
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Cервер</li>
+				<li id="WsServerID">---</li>
+				<li id="WsServerUri">---</li>
+				<li id="WsServerState">---</li>
+				<li class="ui-field-contain">
+					<a href="#" id="FormSetConnect" class="ui-btn ui-btn-icon-left ui-icon-disconnected" data-mini="true" title="подключить">подключить</a>
+				</li>
+			</ul>
+			<br />
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Вид</li>
+				<li>
+					<label for="FormSetLog">журнал событий</label>
+					<input type="checkbox" name="log_use" id="FormSetLog" data-mini="true" value="1" checked="true" />
+				</li>
+			</ul>
+		</form>
+	</div>
+	<!-- /nav-panel::right -->
+	
+	<!-- popup widgets -->
+	<div data-role="popup" id="PopupBasic" data-position-to="window" data-overlay-theme="a" data-theme="b" class="ui-content" style="max-width:640px;"> 
+	</div>
+	<!-- /popup widgets -->
+	
+</div>
+<!-- /page -->
+
+
+<!-- JAVASCRIPT CODE -->
+
+<script language="JavaScript">
+
+//** GLOBAL VARIABLES
+
+
+//** FUNCTIONS
+
+function main()
+{
+	initUI();
+}
+
+$(document).ready(main);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="ATgroup09" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- LIBRARIES -->
+<script type="text/javascript" src="../lib/js/regexp/regexp.js"></script>
+<script type="text/javascript" src="../lib/js/types/types.js"></script>
+<script type="text/javascript" src="../lib/js/screen/screen.js"></script>
+<script type="text/javascript" src="../lib/js/dom/dom.js"></script>
+<script type="text/javascript" src="../lib/js/bit.min.js"></script>
+<script type="text/javascript" src="../lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/js/date.format.min.js"></script>
+<script type="text/javascript" src="../lib/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../lib/js/jquery-mobile/jquery.mobile.min.js"></script>
+
+<!-- MODULES -->
+<script type="text/javascript" src="../mod/debug.js"></script>
+<script type="text/javascript" src="../mod/log.js"></script>
+<script type="text/javascript" src="../mod/popup-dialog.js"></script>
+<script type="text/javascript" src="../mod/hmi-v3.js"></script>
+<script type="text/javascript" src="../mod/form-v2.js"></script>
+<script type="text/javascript" src="../mod/ui-hmi-v3.js"></script>
+<script type="text/javascript" src="res.js"></script>
+<script type="text/javascript" src="main.js"></script>
+
+<!-- CSS-styles -->
+<style type="text/css">@import "../lib/js/jquery-mobile/fonts-googleapis-opensans.css";</style>
+<style type="text/css">@import "../lib/js/jquery-mobile/jquery.mobile.min.css";</style>
+<style type="text/css">@import "../lib/js/jquery-mobile/jqm-demos.css";</style>
+<style type="text/css">@import "../lib/js/jquery-ui/jquery-ui.min.css";</style>
+<style type="text/css">@import "../mod/ui-hmi-v3.css";</style>
+
+<title>Проект 1002 (Компрессорная)</title>
+</head>
+
+<body>
+
+<!-- page -->
+<div data-role="page" data-theme="a" class="my-page">
+	
+	<!-- header -->
+	<div data-role="header" data-position="fixed" data-theme="b" data-tap-toggle="false" >
+		<a href="#nav-panel-left" class="ui-btn ui-btn-icon-right ui-icon-bars ui-btn-icon-notext ui-corner-all" title="Меню">Меню</a>
+		<div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-right">
+            <a href="#" class="ui-btn ui-btn-icon-right ui-icon-disconnected ui-btn-icon-notext ui-noactive" id="ConnectState">Связь</a>
+			<a href="#nav-panel-right" class="ui-btn ui-btn-icon-right ui-icon-eye ui-btn-icon-notext" title="Настройки">Настройки</a>
+        </div>
+		<h1>Проект 1002 (Компрессорная)</h1>
+	</div>
+	<!-- /header -->
+	
+	<!-- content -->
+	<div role="main" class="ui-content">
+		<div class="ui-bar ui-bar-a ui-corner-all ui-main-placeholder">
+			<div id="RootCase" class="ui-grid-b">
+			
+				<!-- Case -->
+				<div hmi="case" class="ui-block-a" id="K1Case">
+					<div hmi="case-bar" class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>K1: ДЭН-200</h3>
+							</div>
+							<div hmi="case-body" class="ui-body ui-body-a">
+								<table hmi="case-table" class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Статор</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K1TSt">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Подшипник</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K1TPd">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Масло</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K1TOil">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35">уровень</td>
+											<td hmi="value" class="ui-table-td-35" id="K1LvOil">---</td>
+											<td class="ui-table-title ui-table-td-30"></td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Воздух</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Давление">P</td>
+											<td hmi="value" class="ui-table-td-35" id="K1PAir">---</td>
+											<td class="ui-table-title ui-table-td-30">МПа</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35">фильтр</td>
+											<td hmi="value" class="ui-table-td-35" id="K1FlAir">---</td>
+											<td class="ui-table-title ui-table-td-30"></td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Нагрузка</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="ток нагрузки">Ток</td>
+											<td hmi="value" class="ui-table-td-35" id="K1A">---</td>
+											<td class="ui-table-title ui-table-td-30">А</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Режим</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" class="ui-table-td-35" id="K1Mode" colspan="3">---</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" class="ui-table-title5 ui-table-td-35" id="K1AlarmCntr" colspan="3">---</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- bitlampblink -->
+					<div hmi="bitlampblink" id="K1Alarm" class="ui-abs-200">
+						<img src="images/warning-1.png" />
+					</div>
+				</div>
+				<!-- End of Case -->
+				
+				<!-- Case -->
+				<div hmi="case" class="ui-block-b" id="K2Case">
+					<div hmi="case-bar" class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>K2: HITACHI DSP-75</h3>
+							</div>
+							<div hmi="case-body" class="ui-body ui-body-a">
+								<table hmi="case-table" class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Статор</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K2TSt">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Подшипник</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K2TPd">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Масло</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K2TOil">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35">уровень</td>
+											<td hmi="value" class="ui-table-td-35" id="K2LvOil">---</td>
+											<td class="ui-table-title ui-table-td-30"></td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Воздух</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Давление">P</td>
+											<td hmi="value" class="ui-table-td-35" id="K2PAir">---</td>
+											<td class="ui-table-title ui-table-td-30">МПа</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35">фильтр</td>
+											<td hmi="value" class="ui-table-td-35" id="K2FlAir">---</td>
+											<td class="ui-table-title ui-table-td-30"></td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Нагрузка</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="ток нагрузки">Ток</td>
+											<td hmi="value" class="ui-table-td-35" id="K2A">---</td>
+											<td class="ui-table-title ui-table-td-30">А</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Режим</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" class="ui-table-td-35" id="K2Mode" colspan="3">---</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" class="ui-table-title5 ui-table-td-35" id="K2AlarmCntr" colspan="3">---</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- bitlampblink -->
+					<div hmi="bitlampblink" id="K2Alarm" class="ui-abs-200">
+						<img src="images/warning-1.png" />
+					</div>
+				</div>
+				<!-- End of Case -->
+				
+				<!-- Case -->
+				<div hmi="case" class="ui-block-c" id="K3Case">
+					<div hmi="case-bar" class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>K3: HITACHI DSP-75</h3>
+							</div>
+							<div hmi="case-body" class="ui-body ui-body-a">
+								<table hmi="case-table" class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Статор</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K3TSt">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Подшипник</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K3TPd">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Масло</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K3TOil">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35">уровень</td>
+											<td hmi="value" class="ui-table-td-35" id="K3LvOil">---</td>
+											<td class="ui-table-title ui-table-td-30"></td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Воздух</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Давление">P</td>
+											<td hmi="value" class="ui-table-td-35" id="K3PAir">---</td>
+											<td class="ui-table-title ui-table-td-30">МПа</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35">фильтр</td>
+											<td hmi="value" class="ui-table-td-35" id="K3FlAir">---</td>
+											<td class="ui-table-title ui-table-td-30"></td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Нагрузка</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="ток нагрузки">Ток</td>
+											<td hmi="value" class="ui-table-td-35" id="K3A">---</td>
+											<td class="ui-table-title ui-table-td-30">А</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Режим</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" class="ui-table-td-35" id="K3Mode" colspan="3">---</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" class="ui-table-title5 ui-table-td-35" id="K3AlarmCntr" colspan="3">---</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- bitlampblink -->
+					<div hmi="bitlampblink" id="K3Alarm" class="ui-abs-200">
+						<img src="images/warning-1.png" />
+					</div>
+				</div>
+				<!-- End of Case -->
+				
+				<!-- Case -->
+				<div hmi="case" class="ui-block-a" id="K4Case">
+					<div hmi="case-bar" class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>K4: HITACHI DSP-75</h3>
+							</div>
+							<div hmi="case-body" class="ui-body ui-body-a">
+								<table hmi="case-table" class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Статор</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K4TSt">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Подшипник</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K4TPd">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Масло</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Температура">Т</td>
+											<td hmi="value" class="ui-table-td-35" id="K4TOil">---</td>
+											<td class="ui-table-title ui-table-td-30">&deg;C</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35">уровень</td>
+											<td hmi="value" class="ui-table-td-35" id="K4LvOil">---</td>
+											<td class="ui-table-title ui-table-td-30"></td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Воздух</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="Давление">P</td>
+											<td hmi="value" class="ui-table-td-35" id="K4PAir">---</td>
+											<td class="ui-table-title ui-table-td-30">МПа</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35">фильтр</td>
+											<td hmi="value" class="ui-table-td-35" id="K4FlAir">---</td>
+											<td class="ui-table-title ui-table-td-30"></td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Нагрузка</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-35" title="ток нагрузки">Ток</td>
+											<td hmi="value" class="ui-table-td-35" id="K4A">---</td>
+											<td class="ui-table-title ui-table-td-30">А</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">Режим</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" class="ui-table-td-35" id="K4Mode" colspan="3">---</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" class="ui-table-title5 ui-table-td-35" id="K4AlarmCntr" colspan="3">---</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- bitlampblink -->
+					<div hmi="bitlampblink" id="K4Alarm" class="ui-abs-200">
+						<img src="images/warning-1.png" />
+					</div>
+				</div>
+				<!-- End of Case -->
+				
+			</div>
+			<div id="LogCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a">
+					<div class="ui-corner-all custom-corners">
+						<div class="ui-bar ui-bar-y">
+							<h3>Журнал событий</h3>
+						</div>
+						<div class="ui-body ui-body-a ui-main-log">
+							<table class="ui-table-z" id="LogTable">
+								<caption />
+								<thead />
+								<tfoot />
+								<tbody />
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /content -->
+	
+	<!-- footer -->
+	<div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+		<a href="../index.html" rel="external" data-icon="carat-l" data-iconpos="notext" title="Назад к экрану [Главное меню]">Back</a>
+	</div>
+	<!-- /footer -->
+	
+	<!-- nav-panel::left -->
+	<div id="nav-panel-left" data-role="panel" data-position-fixed="true" data-display="push" data-theme="b">
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Подробно</li>
+			<li><a href="../index.html" rel="external">Главное меню</a></li>
+		</ul>
+	</div>
+	<!-- /nav-panel::left -->
+	
+	<!-- nav-panel::right -->
+	<div id="nav-panel-right" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a">
+		<form id="FormSet">
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Cервер</li>
+				<li id="WsServerID">---</li>
+				<li id="WsServerUri">---</li>
+				<li id="WsServerState">---</li>
+				<li class="ui-field-contain">
+					<a href="#" id="FormSetConnect" class="ui-btn ui-btn-icon-left ui-icon-disconnected" data-mini="true" title="подключить">подключить</a>
+				</li>
+			</ul>
+			<br />
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Вид</li>
+				<li>
+					<label for="FormSetLog">журнал событий</label>
+					<input type="checkbox" name="log_use" id="FormSetLog" data-mini="true" value="1" checked="true" />
+				</li>
+			</ul>
+		</form>
+	</div>
+	<!-- /nav-panel::right -->
+	
+	<!-- popup widgets -->
+	<div data-role="popup" id="PopupBasic" data-position-to="window" data-overlay-theme="a" data-theme="b" class="ui-content" style="max-width:640px;"> 
+	</div>
+	<!-- /popup widgets -->
+	
+</div>
+<!-- /page -->
+
+
+<!-- JAVASCRIPT CODE -->
+
+<script language="JavaScript">
+
+//** GLOBAL VARIABLES
+
+
+//** FUNCTIONS
+
+function main()
+{
+	Main_InitUI();
+}
+
+$(document).ready(main);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+[ { "ID":8, "Addr":8, "Class":"const", "Type":"word", "Var":"St2", "Allow":"h", "Value":2 },
+  { "ID":9, "Addr":9, "Class":"const", "Type":"word", "Var":"I2",  "Allow":"h", "Value":60 },
+  { "ID":10, "Addr":10, "Class":"in", "Type":"word", "Var":"Tv2", "Allow":"h", "Value":57, "RandMin":57, "RandMax":59 },
+  { "ID":11, "Addr":11, "Class":"in", "Type":"word", "Var":"To2", "Allow":"h", "Value":62, "RandMin":62, "RandMax":64 },
+  { "ID":12, "Addr":12, "Class":"in", "Type":"word", "Var":"Ts2", "Allow":"r|h|d", "Value":60, "RandMin":60, "RandMax":62 },
+  { "ID":13, "Addr":13, "Class":"const", "Type":"word", "Var":"Ws2", "Allow":"h", "Value":256 },
+  { "ID":14, "Addr":14, "Class":"const", "Type":"word", "Var":"Al2", "Allow":"h", "Value":0 }
+]

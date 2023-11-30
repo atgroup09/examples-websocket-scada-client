@@ -1,0 +1,8 @@
+[ { "ID":35, "Addr":35, "Class":"const", "Type":"word", "Var":"St6", "Allow":"h", "Value":0 },
+  { "ID":36, "Addr":36, "Class":"const", "Type":"word", "Var":"I6",  "Allow":"h", "Value":0 },
+  { "ID":37, "Addr":37, "Class":"const", "Type":"word", "Var":"Tv6", "Allow":"h", "Value":39 },
+  { "ID":38, "Addr":38, "Class":"const", "Type":"word", "Var":"To6", "Allow":"h", "Value":42 },
+  { "ID":39, "Addr":39, "Class":"const", "Type":"word", "Var":"Ts6", "Allow":"h", "Value":40 },
+  { "ID":40, "Addr":40, "Class":"const", "Type":"word", "Var":"Ws6", "Allow":"h", "Value":256 },
+  { "ID":41, "Addr":41, "Class":"const", "Type":"word", "Var":"Al6", "Allow":"h", "Value":0 }
+]

@@ -1,0 +1,8 @@
+[ { "ID":1, "Addr":1, "Class":"const", "Type":"word", "Var":"WsDI", "Allow":"h", "Value":1023 },
+  { "ID":2, "Addr":2, "Class":"in", "Type":"word", "Var":"Pres", "Allow":"r|h|d", "RandMin":46, "RandMax":48 },
+  { "ID":3, "Addr":3, "Class":"in", "Type":"word", "Var":"Pret", "Allow":"r|h|d", "RandMin":40, "RandMax":42 },
+  { "ID":4, "Addr":4, "Class":"const", "Type":"word", "Var":"Pext", "Allow":"h", "Value":42 },
+  { "ID":5, "Addr":5, "Class":"in", "Type":"word", "Var":"Tres", "Allow":"r|h|d", "RandMin":748, "RandMax":750 },
+  { "ID":6, "Addr":6, "Class":"in", "Type":"word", "Var":"Tret", "Allow":"r|h|d", "RandMin":448, "RandMax":450 },
+  { "ID":7, "Addr":7, "Class":"in", "Type":"word", "Var":"Tloc", "Allow":"r|h|d", "RandMin":310, "RandMax":316 }
+]

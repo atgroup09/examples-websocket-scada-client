@@ -1,0 +1,6 @@
+[ {"ID":1,
+   "ProtoComm":"dummy",
+   "Allow":1,
+   "Devices":"/usr/local/etc/wslog.conf.d/boil1/devices.json"
+   }
+]

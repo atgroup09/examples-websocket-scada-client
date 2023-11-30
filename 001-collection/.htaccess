@@ -1,0 +1,37 @@
+# TEXT CODING - UTF8
+
+# must be use "AllowOverride all" in the httpd.conf
+
+Options -Indexes -FollowSymLinks +ExecCGI +Includes
+DirectoryIndex index.html index.shtml index.pl index.cgi index.php
+
+<FilesMatch "\.(xml|sql|txt|sh|jar)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "sitemap.xml|robots.txt|yandex_7e6eea09e11c6537.txt">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<IfModule mod_php.c>
+    # set date.timezone
+    # php_value date.timezone Asia/Yekaterinburg
+
+    # set magic_quotes_gpc off
+    php_value magic_quotes_gpc 0
+
+    # set magic_quotes_runtime off
+    php_value magic_quotes_runtime 0
+
+    # set magic_quotes_sybase off
+    php_value magic_quotes_sybase 0
+
+    # output buffering
+    php_flag output_buffering On
+
+    # session lifetime (36000 sec = 10 hours)
+    php_value session.gc_maxlifetime 36000
+    php_value session.cookie_lifetime 36000
+</IfModule>

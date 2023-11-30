@@ -1,0 +1,7 @@
+[{"ID":1,
+  "ProtoComm":"eth",
+  "ProtoData":"modbus_tcp",
+  "Allow":1,
+  "Devices":"C:\\SERVER\\ws\\etc\\ws1003.conf.d\\devices.eth1.json"
+  }
+]

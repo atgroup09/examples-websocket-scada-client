@@ -1,0 +1,56 @@
+.ui-main-placeholder-loc {
+	width: 1069px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+#SpBox {
+	left:194px;
+	top:46px;
+}
+
+#EBox {
+	left:306px;
+	top:46px;
+}
+
+#YBox {
+	left:448px;
+	top:46px;
+}
+
+#DBox {
+	left:590px;
+	top:46px;
+}
+
+#DO {
+	left:677px;
+	top:70px;
+}
+
+#XBox {
+	left:306px;
+	top:124px;
+}
+
+#RootCase {
+	display: none;
+}
+
+#ArhCase {
+	display: none;
+}
+
+#PlotCase {
+	/*display: none;*/
+}
+
+#Plot {
+	height: 250px;
+}
+
+.ui-main-arh {
+	height: 150px;
+	overflow: auto;
+}

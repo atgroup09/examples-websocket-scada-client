@@ -1,0 +1,12 @@
+[ { "ID":1, "Addr":1, "Class":"const", "Type":"word", "Var":"WsDI", "Allow":"h", "Value":4095 },
+  { "ID":2, "Addr":2, "Class":"in", "Type":"word", "Var":"Pset", "Allow":"r|h|d", "RandMin":46, "RandMax":48 },
+  { "ID":3, "Addr":3, "Class":"in", "Type":"word", "Var":"Pret", "Allow":"r|h|d", "RandMin":40, "RandMax":42 },
+  { "ID":5, "Addr":5, "Class":"in", "Type":"word", "Var":"Tset", "Allow":"r|h|d", "RandMin":748, "RandMax":750 },
+  { "ID":6, "Addr":6, "Class":"in", "Type":"word", "Var":"Tret", "Allow":"r|h|d", "RandMin":448, "RandMax":450 },
+  { "ID":7, "Addr":7, "Class":"in", "Type":"word", "Var":"Tloc", "Allow":"r|h|d", "RandMin":310, "RandMax":316 },
+  { "ID":19, "Addr":19, "Class":"in", "Type":"word", "Var":"Tcont", "Allow":"r|h|d", "RandMin":790, "RandMax":815 },
+  { "ID":20, "Addr":20, "Class":"in", "Type":"word", "Var":"TsetHw", "Allow":"r|h|d", "RandMin":590, "RandMax":615 },
+  { "ID":21, "Addr":21, "Class":"in", "Type":"word", "Var":"TretHw", "Allow":"r|h|d", "RandMin":448, "RandMax":450 },
+  { "ID":22, "Addr":22, "Class":"in", "Type":"word", "Var":"Pcw", "Allow":"r|h|d", "RandMin":40, "RandMax":42 },
+  { "ID":23, "Addr":23, "Class":"in", "Type":"word", "Var":"Tout", "Allow":"r|h|d", "RandMin":175, "RandMax":176 }
+]

@@ -1,0 +1,11 @@
+{ "Host":"192.168.1.100",
+  "Port":3306,
+  "User":"root",
+  "Passwd":"root999",
+  "Db":"test",
+  "Profile":"5min",
+  "UseLog":1,
+  "UseLogEvent":1,
+  "Log":"/var/log/wslog/water-arh.log",
+  "LogEvent":"/var/log/wslog/water-ev.log"
+}

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="ATgroup09" />
+<meta name="copyright" content="&copy;ATgroup09, 2019-2020" />
+<meta name="contact" content="atgroup09@gmail.com" />
+<meta name="description" content="Информационный портал, Дом 2" />
+<meta name="keywords" content="Информационный портал, Дом 2" />
+<meta name="resource-type" content="document" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- LIBRARIES -->
+<script type="text/javascript" src="../../lib/js/regexp/regexp.js"></script>
+<script type="text/javascript" src="../../lib/js/types/types.js"></script>
+<script type="text/javascript" src="../../lib/js/screen/screen.js"></script>
+<script type="text/javascript" src="../../lib/js/dom/dom.js"></script>
+<script type="text/javascript" src="../../lib/js/bit.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../lib/js/date.format.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery-mobile/jquery.mobile.min.js"></script>
+
+<!-- MODULES -->
+<script type="text/javascript" src="../../mod/debug.min.js"></script>
+<script type="text/javascript" src="../../mod/log.min.js"></script>
+<script type="text/javascript" src="../../mod/popup-dialog.min.js"></script>
+<script type="text/javascript" src="../../mod/hmi-v2.min.js"></script>
+<script type="text/javascript" src="../../mod/form-v2.min.js"></script>
+<script type="text/javascript" src="../../mod/ui-hmi-v2.min.js"></script>
+<script type="text/javascript" src="res.js"></script>
+<script type="text/javascript" src="main.min.js"></script>
+
+<!-- CSS-styles -->
+<style type="text/css">@import "../../lib/js/jquery-mobile/fonts-googleapis-opensans.css";</style>
+<style type="text/css">@import "../../lib/js/jquery-mobile/jquery.mobile.min.css";</style>
+<style type="text/css">@import "../../lib/js/jquery-mobile/jqm-demos.css";</style>
+<style type="text/css">@import "../../lib/js/jquery-ui/jquery-ui.min.css";</style>
+<style type="text/css">@import "../../mod/ui-hmi-v2.min.css";</style>
+<style type="text/css">@import "main.min.css";</style>
+
+<title>Уральских Добровольцев, 1а</title>
+</head>
+
+<body>
+
+<!-- page -->
+<div data-role="page" data-theme="a" class="my-page">
+	
+	<!-- header -->
+	<div data-role="header" data-position="fixed" data-theme="b" data-tap-toggle="false" >
+		<a href="#nav-panel-left" class="ui-btn ui-btn-icon-right ui-icon-bars ui-btn-icon-notext ui-corner-all" title="Меню">Меню</a>
+		<div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-right">
+            <a href="#" class="ui-btn ui-btn-icon-right ui-icon-disconnected ui-btn-icon-notext ui-noactive" id="ConnectState">Связь</a>
+			<a href="#nav-panel-right" class="ui-btn ui-btn-icon-right ui-icon-eye ui-btn-icon-notext" title="Настройки">Настройки</a>
+        </div>
+        <h1>Дом 2 :: <u>котельная</u></h1>
+	</div>
+	<!-- /header -->
+	
+	<!-- content -->
+	<div role="main" class="ui-content">
+		<div class="ui-bar ui-bar-a ui-corner-all ui-main-placeholder-loc">
+			<div id="RootCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a ui-bar-main">
+					<img src="images/main.png" />
+					
+					<div id="Res_t" class="ui-abs-100 ui-abs-text-x ui-color-red">подача</div>
+					<div id="Ret_t" class="ui-abs-100 ui-abs-text-x ui-color-blue">возврат</div>
+					<div id="Ext_t" class="ui-abs-100 ui-abs-text-x ui-color-blue2">подпитка</div>
+					<div id="Clw_t" class="ui-abs-100 ui-abs-text-x ui-color-blue2">ХВС</div>
+					
+					<div id="Gk_t" class="ui-abs-100 ui-abs-text-x ui-color-black" title="газовый клапан">ГК</div>
+					<img id="GkAl" class="ui-abs-300" src="images/warning-min.png" />
+					<img id="Gk" log-res-target="Gk" log-res-msg="St" log-res-color="StColor" class="ui-abs-100" src="images/valve-red.png" src0="images/valve-red.png" src1="images/valve-green.png" title="газовый клапан" />
+					
+					<div id="K1_t" class="ui-abs-100 ui-abs-text-y ui-color-black">котел #1</div>
+					<img id="K1Burn" log-res-target="K1Burn" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="котел 1: горелка" />
+					<img id="K1Al" class="ui-abs-300" src="images/warning.png" />
+					
+					<div id="K2_t" class="ui-abs-100 ui-abs-text-y ui-color-black">котел #2</div>
+					<img id="K2Burn" log-res-target="K2Burn" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="котел 2: горелка" />
+					<img id="K2Al" class="ui-abs-300" src="images/warning.png" />
+					
+					<div id="Pump1_t" class="ui-abs-100 ui-abs-text-x ui-color-black" title="насос 1">H1</div>
+					<img id="Pump1" log-res-target="Pump1" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="насос 1" />
+					
+					<div id="Pump2_t" class="ui-abs-100 ui-abs-text-x ui-color-black" title="насос 2">H2</div>
+					<img id="Pump2" log-res-target="Pump2" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="насос 2" />
+					
+					<img id="BoilAl" class="ui-abs-300" src="images/warning.png" />
+					
+					<!-- hidden elements -->
+					<div class="ui-none" id="K1BurnAl" log-res-target="K1Burn" log-res-msg="Al" log-res-color="AlColor">K1Burn</div>
+					<div class="ui-none" id="K1PAl" log-res-target="K1" log-res-msg="PAl" log-res-color="AlColor">K1PAl</div>
+					<div class="ui-none" id="K1TAl" log-res-target="K1" log-res-msg="TAl" log-res-color="AlColor">K1TAl</div>
+					<div class="ui-none" id="K2BurnAl" log-res-target="K2Burn" log-res-msg="Al" log-res-color="AlColor">K2Burn</div>
+					<div class="ui-none" id="K2PAl" log-res-target="K2" log-res-msg="PAl" log-res-color="AlColor">K2PAl</div>
+					<div class="ui-none" id="K2TAl" log-res-target="K2" log-res-msg="TAl" log-res-color="AlColor">K2TAl</div>
+					
+					<div id="Tloc_t" class="ui-abs-100 ui-abs-text-x ui-color-black">T<sub>нв</sub></div>
+					<div id="TlocBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Ta" title="температура наружного воздуха">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PresBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Pi" title="давление подачи">0.00</th>
+								</tr>
+								<tr>
+									<td>кгс/см<sup>2</sup></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="TresBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Ti" title="температура подачи">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PretBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Po" title="давление возврата">0.00</th>
+								</tr>
+								<tr>
+									<td>кгс/см<sup>2</sup></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="TretBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="To" title="температура возврата">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PextBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Pc" title="давление холодного водоснабжения">0.00</th>
+								</tr>
+								<tr>
+									<td>кгс/см<sup>2</sup></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="ExtCase1" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a">
+					<div class="ui-corner-all custom-corners">
+						<div class="ui-bar ui-bar-y">
+							<h3>Аварии</h3>
+						</div>
+						<div class="ui-body ui-body-a">
+							<table class="ui-table-z">
+								<caption />
+								<thead />
+								<tfoot />
+								<tbody>
+									<tr hmi="case-table-row">
+										<td id="COAl1" log-res-target="Boil" log-res-msg="COAl1" log-res-color="AlColor" title="загазованность CO, 1-й порог">Загазованность CO (1й порог)</td>
+										<td id="COAl2" log-res-target="Boil" log-res-msg="COAl2" log-res-color="AlColor" title="загазованность CO, 2-й порог">Загазованность CO (2й порог)</td>
+										<td id="CHAl" log-res-target="Boil" log-res-msg="CHAl" log-res-color="AlColor" title="загазованность CH">Загазованность CH</td>
+									</tr>
+									<tr hmi="case-table-row">
+										<td id="PoAl" log-res-target="Boil" log-res-msg="PoAl" log-res-color="AlColor" title="аварийное давление обратного трубопровода">Обратное давление</td>
+										<td colspan="2" id="WaterLoAl" log-res-target="Boil" log-res-msg="WaterLoAl" log-res-color="AlColor" title="низкий уровень бака запаса воды">Низкий уровень бака запаса воды</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="LogCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a">
+					<div class="ui-corner-all custom-corners">
+						<div class="ui-bar ui-bar-y">
+							<h3>Журнал событий</h3>
+						</div>
+						<div class="ui-body ui-body-a ui-main-log">
+							<table class="ui-table-z" id="LogTable">
+								<caption />
+								<thead />
+								<tfoot />
+								<tbody />
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /content -->
+	
+	<!-- footer -->
+	<div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+		<a href="../index.html" target="_top" rel="external" data-icon="carat-l" data-iconpos="notext" title="Назад к экрану [Дом 2 (таблица)]">Back</a>
+	</div>
+	<!-- /footer -->
+	
+	<!-- nav-panel::left -->
+	<div id="nav-panel-left" data-role="panel" data-position-fixed="true" data-display="push" data-theme="b">
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Подробно</li>
+			<li data-role="list-divider" data-theme="b">котельная</li>
+		</ul>
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Назад к экрану</li>
+			<li><a href="../index.html" target="_top" rel="external">Дом 2 (таблица)</a></li>
+			<li><a href="../../index.html" target="_top" rel="external">Главное меню</a></li>
+		</ul>
+	</div>
+	<!-- /nav-panel::left -->
+	
+	<!-- nav-panel::right -->
+	<div id="nav-panel-right" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a">
+		<form id="FormSet">
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Cервер</li>
+				<li id="WsServerID">---</li>
+				<li id="WsServerUri">---</li>
+				<li id="WsServerState">---</li>
+				<li class="ui-field-contain">
+					<a href="#" id="FormSetConnect" class="ui-btn ui-btn-icon-left ui-icon-disconnected" data-mini="true" title="подключить">подключить</a>
+				</li>
+			</ul>
+			<br />
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Вид</li>
+				<li>
+					<label for="FormSetLog">журнал событий</label>
+					<input type="checkbox" name="log_use" id="FormSetLog" data-mini="true" value="1" checked="true" />
+				</li>
+			</ul>
+		</form>
+	</div>
+	<!-- /nav-panel::right -->
+	
+	<!-- popup widgets -->
+	<div data-role="popup" id="PopupBasic" data-position-to="window" data-overlay-theme="a" data-theme="b" class="ui-content" style="max-width:640px;"> 
+	</div>
+	<!-- /popup widgets -->
+	
+</div>
+<!-- /page -->
+
+
+<!-- JAVASCRIPT CODE -->
+
+<script language="JavaScript">
+
+//** GLOBAL VARIABLES
+
+
+//** FUNCTIONS
+
+function main()
+{
+	Main_InitUI();
+}
+
+$(document).ready(main);
+
+</script>
+
+</body>
+</html>

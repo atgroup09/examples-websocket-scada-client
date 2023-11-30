@@ -1,0 +1,98 @@
+<html>
+<head>
+
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="alastor" />
+<meta name="copyright" content="&copy;ATgroup09, 2019">
+<meta name="contact" content="atgroup09@gmail.com" />
+
+<!-- LIBRARIES -->
+<script type="text/javascript" src="../lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/js/date.format.min.js"></script>
+
+<!-- JAVASCRIPT CODE -->
+
+<script language="JavaScript">
+
+//** GLOBAL VARIABLES
+
+//* timer
+var G_TIMER_PERIOD	= 60; //timeout (seconds)
+var G_TIMER			= 0;   //pointer
+
+//* nodes
+var G_NODE_FRAME    = null;
+
+//* list of URI
+var G_URI_PAGES     = ["main.html?base_addr=1",
+					   "main.html?base_addr=2",
+					   "main.html?base_addr=3",
+					   "main.html?base_addr=4",
+					   "main.html?base_addr=5",
+					   "main.html?base_addr=6",
+					   "main.html?base_addr=7",
+					   "main.html?base_addr=8"
+				      ];
+
+//* index of current URI
+var G_URI_PAGE_IDX  = 0;
+
+
+//** FUNCTIONS
+
+/*
+@brief  Handler for event Timer.elapsed
+@param  None.
+@return None.
+*/
+function onTimerElapsed()
+{
+	if(G_NODE_FRAME)
+	{
+		G_URI_PAGE_IDX = (((G_URI_PAGE_IDX+1) < G_URI_PAGES.length) ? (G_URI_PAGE_IDX+1) : 0);
+		G_NODE_FRAME.attr("src", G_URI_PAGES[G_URI_PAGE_IDX] + "&tm=" + (new Date()).getCurrentTimeStamp());
+	}
+}
+
+
+/*
+@brief  Handler for event Document.ready
+@param  None.
+@return None.
+*/
+function main()
+{
+	G_NODE_FRAME = $("#MainFrame");
+	G_TIMER      = setInterval(onTimerElapsed, (G_TIMER_PERIOD*1000));
+}
+
+$(document).ready(main);
+
+</script>
+
+
+<!-- CSS StYLES -->
+
+<style type="text/css">
+body {
+	margin:0px;
+	padding:0px;
+}
+
+iframe {
+	width:100%;
+	height:100%;
+	border:0px;
+}
+</style>
+
+<title>Термообработка (обзор)</title>
+</head>
+
+<body>
+<iframe id="MainFrame" src="main.html?base_addr=1"></frame>
+</body>
+</html>

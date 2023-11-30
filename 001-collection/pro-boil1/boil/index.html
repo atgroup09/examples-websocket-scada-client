@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="ATgroup09" />
+<meta name="copyright" content="&copy;ATgroup09, 2019-2020" />
+<meta name="contact" content="atgroup09@gmail.com" />
+<meta name="description" content="Информационный портал, Дом 1, Котельная" />
+<meta name="keywords" content="Информационный портал, Дом 1, Котельная" />
+<meta name="resource-type" content="document" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- LIBRARIES -->
+<script type="text/javascript" src="../../lib/js/regexp/regexp.js"></script>
+<script type="text/javascript" src="../../lib/js/types/types.js"></script>
+<script type="text/javascript" src="../../lib/js/screen/screen.js"></script>
+<script type="text/javascript" src="../../lib/js/dom/dom.js"></script>
+<script type="text/javascript" src="../../lib/js/bit.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../lib/js/date.format.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery-mobile/jquery.mobile.min.js"></script>
+
+<!-- MODULES -->
+<script type="text/javascript" src="../../mod/debug.min.js"></script>
+<script type="text/javascript" src="../../mod/log.min.js"></script>
+<script type="text/javascript" src="../../mod/popup-dialog.min.js"></script>
+<script type="text/javascript" src="../../mod/hmi-v2.min.js"></script>
+<script type="text/javascript" src="../../mod/form-v2.min.js"></script>
+<script type="text/javascript" src="../../mod/ui-hmi-v2.min.js"></script>
+<script type="text/javascript" src="res.js"></script>
+<script type="text/javascript" src="main.min.js"></script>
+
+<!-- CSS-styles -->
+<style type="text/css">@import "../../lib/js/jquery-mobile/fonts-googleapis-opensans.css";</style>
+<style type="text/css">@import "../../lib/js/jquery-mobile/jquery.mobile.min.css";</style>
+<style type="text/css">@import "../../lib/js/jquery-mobile/jqm-demos.css";</style>
+<style type="text/css">@import "../../lib/js/jquery-ui/jquery-ui.min.css";</style>
+<style type="text/css">@import "../../mod/ui-hmi-v2.min.css";</style>
+<style type="text/css">@import "main.min.css";</style>
+
+<title>Богдана Хмельницкого, 50</title>
+</head>
+
+<body>
+
+<!-- page -->
+<div data-role="page" data-theme="a" class="my-page">
+	
+	<!-- header -->
+	<div data-role="header" data-position="fixed" data-theme="b" data-tap-toggle="false" >
+		<a href="#nav-panel-left" class="ui-btn ui-btn-icon-right ui-icon-bars ui-btn-icon-notext ui-corner-all" title="Меню">Меню</a>
+		<div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-right">
+            <a href="#" class="ui-btn ui-btn-icon-right ui-icon-disconnected ui-btn-icon-notext ui-noactive" id="ConnectState">Связь</a>
+			<a href="#nav-panel-right" class="ui-btn ui-btn-icon-right ui-icon-eye ui-btn-icon-notext" title="Настройки">Настройки</a>
+        </div>
+        <h1>Дом 1 :: <u>котельная</u></h1>
+	</div>
+	<!-- /header -->
+	
+	<!-- content -->
+	<div role="main" class="ui-content">
+		<div class="ui-bar ui-bar-a ui-corner-all ui-main-placeholder-loc">
+			<div id="RootCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a ui-bar-main">
+					<img src="images/main.png" />
+					
+					<div id="i_t" class="ui-abs-100 ui-abs-text-x ui-color-red">подача</div>
+					<div id="o_t" class="ui-abs-100 ui-abs-text-x ui-color-blue">возврат</div>
+					<div id="g_t" class="ui-abs-100 ui-abs-text-x ui-color-green">газ</div>
+					
+					<div id="K1_t" class="ui-abs-100 ui-abs-text-y ui-color-black">котел #1</div>
+					<img id="K1" log-res-target="K1" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="котел 1" />
+					<img id="K1Al" class="ui-abs-300" src="images/warning.png" log-res-target="K1" log-res-msg="Al" log-res-color="AlColor" />
+					<img id="K1N" log-res-target="K1N" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="насос котла 1" />
+					<img id="G1Al" class="ui-abs-300" src="images/warning-mid.png" log-res-target="G1" log-res-msg="Al" log-res-color="AlColor" />
+					<img id="K1Y" log-res-target="K1Y" log-res-msg="St2" class="ui-abs-100" src="images/valve-blue-0.png" src0="images/valve-blue-0.png" src1="images/valve-blue-1.png" title="клапан котла 1" />
+					
+					<div id="K2_t" class="ui-abs-100 ui-abs-text-y ui-color-black">котел #2</div>
+					<img id="K2" log-res-target="K2" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="котел 2" />
+					<img id="K2Al" class="ui-abs-300" src="images/warning.png" log-res-target="K2" log-res-msg="Al" log-res-color="AlColor" />
+					<img id="K2N" log-res-target="K2N" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="насос контла 2" />
+					<img id="G2Al" class="ui-abs-300" src="images/warning-mid.png" log-res-target="G2" log-res-msg="Al" log-res-color="AlColor" />
+					<img id="K2Y" log-res-target="K2Y" log-res-msg="St2" class="ui-abs-100" src="images/valve-blue-0.png" src0="images/valve-blue-0.png" src1="images/valve-blue-1.png" title="клапан котла 2" />
+					
+					<div id="N1_t" class="ui-abs-100 ui-abs-text-x ui-color-black" title="насос 1">H1</div>
+					<img id="N1" log-res-target="N1" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="насос 1" />
+					<img id="N1Al" class="ui-abs-300" src="images/warning-mid.png" log-res-target="N1" log-res-msg="Al" log-res-color="AlColor" />
+					
+					<div id="N2_t" class="ui-abs-100 ui-abs-text-x ui-color-black" title="насос 2">H2</div>
+					<img id="N2" log-res-target="N2" log-res-msg="St" class="ui-abs-100" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="насос 2" />
+					<img id="N2Al" class="ui-abs-300" src="images/warning-mid.png" log-res-target="N2" log-res-msg="Al" log-res-color="AlColor" />
+					
+					<img id="BoilAl" class="ui-abs-300" src="images/warning.png" />
+					
+					<!-- hidden elements -->
+					<div class="ui-none" id="DOAl" log-res-target="DO" log-res-msg="Al" log-res-color="AlColor">DOAl</div>
+					<div class="ui-none" id="TiAl" log-res-target="Ti" log-res-msg="Al" log-res-color="AlColor">TiAl</div>
+					<div class="ui-none" id="TiHiAl" log-res-target="Ti" log-res-msg="HiAl" log-res-color="AlColor">TiHiAl</div>
+					<div class="ui-none" id="TiLoAl" log-res-target="Ti" log-res-msg="LoAl" log-res-color="AlColor">TiLoAl</div>
+					<div class="ui-none" id="TiErr" log-res-target="Ti" log-res-msg="SensErr" log-res-color="AlColor">TiErr</div>
+					<div class="ui-none" id="PiHiAl" log-res-target="Pi" log-res-msg="HiAl" log-res-color="AlColor">PiHiAl</div>
+					<div class="ui-none" id="PiLoAl" log-res-target="Pi" log-res-msg="LoAl" log-res-color="AlColor">PiLoAl</div>
+					<div class="ui-none" id="ToHiAl" log-res-target="To" log-res-msg="HiAl" log-res-color="AlColor">ToHiAl</div>
+					<div class="ui-none" id="ToLoAl" log-res-target="To" log-res-msg="LoAl" log-res-color="AlColor">ToLoAl</div>
+					<div class="ui-none" id="ToErr" log-res-target="To" log-res-msg="SensErr" log-res-color="AlColor">ToErr</div>
+					<div class="ui-none" id="PoHiAl" log-res-target="Po" log-res-msg="HiAl" log-res-color="AlColor">PoHiAl</div>
+					<div class="ui-none" id="PoLoAl" log-res-target="Po" log-res-msg="LoAl" log-res-color="AlColor">PoLoAl</div>
+					<div class="ui-none" id="PdLoAl" log-res-target="Pd" log-res-msg="LoAl" log-res-color="AlColor">PdLoAl</div>
+					<div class="ui-none" id="TaErr" log-res-target="Ta" log-res-msg="SensErr" log-res-color="AlColor">TaErr</div>
+					<div class="ui-none" id="Tk1Err" log-res-target="Tk1" log-res-msg="SensErr" log-res-color="AlColor">Tk1Err</div>
+					<div class="ui-none" id="Tk2Err" log-res-target="Tk2" log-res-msg="SensErr" log-res-color="AlColor">Tk2Err</div>
+					<div class="ui-none" id="ExpBusErr" log-res-target="ExpBus" log-res-msg="Err" log-res-color="AlColor">ExpBusErr</div>
+					<div class="ui-none" id="V24Err" log-res-target="V24" log-res-msg="Err" log-res-color="AlColor">V24Err</div>
+					<div class="ui-none" id="VErr" log-res-target="V" log-res-msg="Err" log-res-color="AlColor">VErr</div>
+					<div class="ui-none" id="V24BusErr" log-res-target="V24Bus" log-res-msg="Err" log-res-color="AlColor">V24BusErr</div>
+					<div class="ui-none" id="V5Err" log-res-target="V5" log-res-msg="Err" log-res-color="AlColor">V5Err</div>
+					<div class="ui-none" id="Alarm" log-res-target="Boil" log-res-msg="Al" log-res-color="AlColor">Alarm</div>
+					
+					<div id="Ta_t" class="ui-abs-100 ui-abs-text-x ui-color-black">T<sub>нв</sub></div>
+					<div id="TaBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Ta" title="температура наружного воздуха">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PiBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Pi" title="давление подачи">0.00</th>
+								</tr>
+								<tr>
+									<td>атм</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="TiBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Ti" title="температура подачи">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PoBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Po" title="давление возврата">0.00</th>
+								</tr>
+								<tr>
+									<td>атм</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="ToBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="To" title="температура возврата">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="Pd_t" class="ui-abs-100 ui-abs-text-x ui-color-black">перепад</div>
+					<div id="PdBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Pd" title="перепад давления">0.00</th>
+								</tr>
+								<tr>
+									<td>атм</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="Y3Box" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Y3" title="положение трехходового клапана">0.00</th>
+								</tr>
+								<tr>
+									<td>%</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="Fq_t" class="ui-abs-100 ui-abs-text-x ui-color-black">ПЧ</div>
+					<div id="FqBox" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Fq1" title="преобразователь частоты">0.00</th>
+								</tr>
+								<tr>
+									<td>%</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="Tk1Box" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Tk1" title="температура котла 1">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="Tk2Box" class="ui-abs-100 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Tk2" title="температура котла 2">0.00</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="ExtCase" class="ui-grid-a">
+				<div class="ui-block-b">
+					<div class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>Режимы</h3>
+							</div>
+							<div class="ui-body ui-body-a">
+								<table class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-60" title="режим работы котла 1">Котел 1</td>
+											<td hmi="value" title="ручной" id="K1MM" log-res-target="K1" log-res-msg="MM" log-res-color="WarnColor">руч</td>
+											<td hmi="value" title="автомат" id="K1AM" log-res-target="K1" log-res-msg="AM" log-res-color="WarnColor">авт</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-60" title="режим работы насоса котла 1">Насос котла 1</td>
+											<td hmi="value" title="ручной" id="K1NMM" log-res-target="K1N" log-res-msg="MM" log-res-color="WarnColor">руч</td>
+											<td hmi="value" title="автомат" id="K1NAM" log-res-target="K1N" log-res-msg="AM" log-res-color="WarnColor">авт</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-60" title="режим работы котла 2">Котел 2</td>
+											<td hmi="value" title="ручной" id="K2MM" log-res-target="K2" log-res-msg="MM" log-res-color="WarnColor">руч</td>
+											<td hmi="value" title="автомат" id="K2AM" log-res-target="K2" log-res-msg="AM" log-res-color="WarnColor">авт</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-60" title="режим работы насоса котла 2">Насос котла 2</td>
+											<td hmi="value" title="ручной" id="K2NMM" log-res-target="K2N" log-res-msg="MM" log-res-color="WarnColor">руч</td>
+											<td hmi="value" title="автомат" id="K2NAM" log-res-target="K2N" log-res-msg="AM" log-res-color="WarnColor">авт</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-60" title="режим работы насоса 1">Насос 1</td>
+											<td hmi="value" title="ручной" id="N1MM" log-res-target="N1" log-res-msg="MM" log-res-color="WarnColor">руч</td>
+											<td hmi="value" title="автомат" id="N1AM" log-res-target="N1" log-res-msg="AM" log-res-color="WarnColor">авт</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-60" title="режим работы насоса 2">Насос 2</td>
+											<td hmi="value" title="ручной" id="N2MM" log-res-target="N2" log-res-msg="MM" log-res-color="WarnColor">руч</td>
+											<td hmi="value" title="автомат" id="N2AM" log-res-target="N2" log-res-msg="AM" log-res-color="WarnColor">авт</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-60" title="режим работы ПЧ">ПЧ</td>
+											<td hmi="value" title="ручной" id="FqMM" log-res-target="Fq" log-res-msg="MM" log-res-color="WarnColor">руч</td>
+											<td hmi="value" title="автомат" id="FqAM" log-res-target="Fq" log-res-msg="AM" log-res-color="WarnColor">авт</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ui-block-b">
+					<div class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>Аварии</h3>
+							</div>
+							<div class="ui-body ui-body-a">
+								<table class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr hmi="case-table-row" class="ui-table-tr-td-50">
+											<td title="загазованность CO" id="CO" log-res-target="Boil" log-res-msg="COAl" log-res-color="AlColor">CO</td>
+											<td title="загазованность CH4" id="CH4" log-res-target="Boil" log-res-msg="CHAl" log-res-color="AlColor">CH4</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="LogCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a">
+					<div class="ui-corner-all custom-corners">
+						<div class="ui-bar ui-bar-y">
+							<h3>Журнал событий</h3>
+						</div>
+						<div class="ui-body ui-body-a ui-main-log">
+							<table class="ui-table-z" id="LogTable">
+								<caption />
+								<thead />
+								<tfoot />
+								<tbody />
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /content -->
+	
+	<!-- footer -->
+	<div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+		<a href="../index.html" target="_top" rel="external" data-icon="carat-l" data-iconpos="notext" title="Назад к экрану [Дом 1 (таблица)]">Back</a>
+	</div>
+	<!-- /footer -->
+	
+	<!-- nav-panel::left -->
+	<div id="nav-panel-left" data-role="panel" data-position-fixed="true" data-display="push" data-theme="b">
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Подробно</li>
+			<li data-role="list-divider" data-theme="b">котельная</li>
+		</ul>
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Назад к экрану</li>
+			<li><a href="../index.html" target="_top" rel="external">Дом 1 (таблица)</a></li>
+			<li><a href="../../index.html" target="_top" rel="external">Главное меню</a></li>
+		</ul>
+	</div>
+	<!-- /nav-panel::left -->
+	
+	<!-- nav-panel::right -->
+	<div id="nav-panel-right" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a">
+		<form id="FormSet">
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Cервер</li>
+				<li id="WsServerID">---</li>
+				<li id="WsServerUri">---</li>
+				<li id="WsServerState">---</li>
+				<li class="ui-field-contain">
+					<a href="#" id="FormSetConnect" class="ui-btn ui-btn-icon-left ui-icon-disconnected" data-mini="true" title="подключить">подключить</a>
+				</li>
+			</ul>
+			<br />
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Вид</li>
+				<li>
+					<label for="FormSetLog">журнал событий</label>
+					<input type="checkbox" name="log_use" id="FormSetLog" data-mini="true" value="1" checked="true" />
+				</li>
+			</ul>
+		</form>
+	</div>
+	<!-- /nav-panel::right -->
+	
+	<!-- popup widgets -->
+	<div data-role="popup" id="PopupBasic" data-position-to="window" data-overlay-theme="a" data-theme="b" class="ui-content" style="max-width:640px;"> 
+	</div>
+	<!-- /popup widgets -->
+	
+</div>
+<!-- /page -->
+
+
+<!-- JAVASCRIPT CODE -->
+
+<script language="JavaScript">
+
+//** GLOBAL VARIABLES
+
+
+//** FUNCTIONS
+
+function main()
+{
+	Main_InitUI();
+}
+
+$(document).ready(main);
+
+</script>
+
+</body>
+</html>

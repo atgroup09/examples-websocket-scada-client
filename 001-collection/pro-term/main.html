@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="ATgroup09" />
+<meta name="copyright" content="&copy;ATgroup09, 2019" />
+<meta name="contact" content="atgroup09@gmail.com" />
+<meta name="description" content="Информационный портал (портфолио, предложение по автоматизации)" />
+<meta name="keywords" content="АСУ ТП, АСКУ ТКП, предложение, диспетчеризация, мониторинг, автоматика, автоматизация, термообработка, терморегулятор, ПИД, газовая горелка, газовые горелки, ТРГ, мнемосхема, мнемосхемы, HMI, ModBus, контроллеры, контроллер, ПЛК, СПК, панель, сенсорные панели, CodeSys, Isagraf, SCADA, ICP DAS, i7000, Овен, Weintek, Schneider Electric, Siemens" />
+<meta name="resource-type" content="document" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- TRG :: websocket-client
+
+		URI arguments:
+	    base_addr - базовый адрес прибора
+-->
+
+<!-- LIBRARIES -->
+<script type="text/javascript" src="../lib/js/regexp/regexp.js"></script>
+<script type="text/javascript" src="../lib/js/types/types.js"></script>
+<script type="text/javascript" src="../lib/js/screen/screen.js"></script>
+<script type="text/javascript" src="../lib/js/dom/dom.js"></script>
+<script type="text/javascript" src="../lib/js/bit.min.js"></script>
+<script type="text/javascript" src="../lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/js/date.format.min.js"></script>
+<script type="text/javascript" src="../lib/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../lib/js/jquery-mobile/jquery.mobile.min.js"></script>
+<script type="text/javascript" src="../lib/js/js-url/url.min.js"></script>
+
+<!-- MODULES -->
+<script type="text/javascript" src="../mod/debug.min.js"></script>
+<script type="text/javascript" src="../mod/log.min.js"></script>
+<script type="text/javascript" src="../mod/popup-dialog.min.js"></script>
+<script type="text/javascript" src="../mod/form-v2.min.js"></script>
+<script type="text/javascript" src="../mod/hmi-v2.min.js"></script>
+<script type="text/javascript" src="../mod/hmi-v2-main.min.js"></script>
+<script type="text/javascript" src="res.js"></script>
+<script type="text/javascript" src="main.min.js"></script>
+
+<!-- CSS-styles -->
+<style type="text/css">@import "../lib/js/jquery-mobile/fonts-googleapis-opensans.css";</style>
+<style type="text/css">@import "../lib/js/jquery-mobile/jquery.mobile.min.css";</style>
+<style type="text/css">@import "../lib/js/jquery-mobile/jqm-demos.css";</style>
+<style type="text/css">@import "../lib/js/jquery-ui/jquery-ui.min.css";</style>
+<style type="text/css">@import "main.min.css";</style>
+
+<title>Термообработка (установка)</title>
+</head>
+
+<body>
+
+<!-- page -->
+<div data-role="page" data-theme="a" class="my-page">
+	
+	<!-- header -->
+	<div data-role="header" data-position="fixed" data-theme="b" data-tap-toggle="false" >
+		<a href="#nav-panel-left" class="ui-btn ui-btn-icon-right ui-icon-bars ui-btn-icon-notext ui-corner-all" title="Меню">Меню</a>
+		<div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-right">
+            <a href="#" class="ui-btn ui-btn-icon-right ui-icon-disconnected ui-btn-icon-notext ui-noactive" id="ConnectState">Связь</a>
+			<a href="#nav-panel-right" class="ui-btn ui-btn-icon-right ui-icon-eye ui-btn-icon-notext" title="Настройки">Настройки</a>
+        </div>
+		<h1 id="MainTitle">Термообработка :: <u>Установка #{0}</u></h1>
+	</div>
+	<!-- /header -->
+	
+	<!-- content -->
+	<div role="main" class="ui-content">
+		<div class="ui-bar ui-bar-a ui-corner-all ui-main-placeholder">
+			<div id="RootCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a ui-bar-main">
+					<img src="images/main.png" />
+					<div id="TrgLog" class="ui-none" log-res-target="Trg"></div>
+					<div id="TrgNotLog" class="ui-none" log-res-target="Trg" log-res-msg="WsStNot"></div>
+					<div id="RegLog" class="ui-none" log-res-target="Reg"></div>
+					<img id="Mo" log-res-target="Mode" log-res-msg="Modes" class="ui-abs-100" src="images/mode-m.png" title="режим работы" />
+					<img id="Ty" log-res-target="Type" log-res-msg="Types" class="ui-abs-100" src="images/mode-g.png" title="тип установки" />
+					<img id="Snd" class="ui-abs-100" src="images/sound.png" title="сирена" />
+					<img id="Er" log-res-target="Error" class="ui-abs-100" src="images/error.png" title="ошибка" />
+					<img id="Wa" log-res-target="Warning" class="ui-abs-100" src="images/warn.png" title="предупреждение" />
+					<img id="FlameBl" class="ui-abs-110" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="наличие пламени" />
+					<img id="Flame" class="ui-abs-300" src="images/flame.png" />
+					<img id="Body8" class="ui-abs-100" src="images/trg-body8-0.png" src0="images/trg-body8-0.png" src1="images/trg-body8-1.png" />
+					<img id="Body7" class="ui-abs-100" src="images/trg-body7-0.png" src0="images/trg-body7-0.png" src1="images/trg-body7-1.png" />
+					<img id="Body4" class="ui-abs-100" src="images/trg-body4-0.png" src0="images/trg-body4-0.png" src1="images/trg-body4-1.png" />
+					<img id="Body1" class="ui-abs-100" src="images/trg-body1-0.png" src0="images/trg-body1-0.png" src1="images/trg-body1-1.png" />
+					<img id="Body2a" class="ui-abs-110" src="images/trg-body2a-0.png" />
+					<img id="Body2" class="ui-abs-100" src="images/trg-body2-0.png" src0="images/trg-body2-0.png" src1="images/trg-body2-1.png" />
+					<img id="Body3" class="ui-abs-100" src="images/trg-body3-0.png" src0="images/trg-body3-0.png" src1="images/trg-body3-1.png" />
+					<img id="Body5" class="ui-abs-100" src="images/trg-body5-0.png" src0="images/trg-body5-0.png" src1="images/trg-body5-1.png" />
+					<img id="Body6" class="ui-abs-100" src="images/trg-body6-0.png" src0="images/trg-body6-0.png" src1="images/trg-body6-1.png" />
+					<img id="BlowProbe" class="ui-abs-100" src="images/probe.png" />
+					<img id="BlowBl" class="ui-abs-110" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="работа двигателя рециркуляции" />
+					<img id="Blow" class="ui-abs-110" src="images/trg-blower-0.png" src0="images/trg-blower-0.png" src1="images/trg-blower-1.png" title="двигатель рециркуляции" />
+					<img id="SparkBl" class="ui-abs-110" src="images/bl-red.png" src0="images/bl-red.png" src1="images/bl-green.png" title="работа трансформатора зажигания" />
+					<img id="Spark" class="ui-abs-120" src="images/spark-1.png" />
+					<img id="IgnRe" class="ui-abs-120" src="images/repeat_ign.png" />
+					<div id="IgnReNum" class="ui-abs-120 ui-abs-text-x ui-color-black" title="количество попыток розжига">0</div>
+					<img id="AirVl" class="ui-abs-110" src="images/valve1-cl.png" src0="images/valve1-cl.png" src1="images/valve1-op.png" title="воздушная заслонка" />
+					<div id="AirVlStBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x2">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="AirVlPos" title="степень открытия воздушной заслонки">---</th>
+								</tr>
+								<tr>
+									<td>%</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<img id="GasVl" class="ui-abs-110" src="images/valve1-cl.png" src0="images/valve1-cl.png" src1="images/valve1-op.png" title="газовая заслонка (перед горелкой)" />
+					<div id="GasVlStBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x2">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="GasVlPos" title="степень открытия газовой заслонки">---</th>
+								</tr>
+								<tr>
+									<td>%</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<img id="VapVl" class="ui-abs-110" src="images/valve1-cl.png" src0="images/valve1-cl.png" src1="images/valve4-op.png" title="КЗР подачи пара" />
+					<div id="VapVlStBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x0">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="VapVlPos" title="степень открытия КЗР подачи пара">---</th>
+								</tr>
+								<tr>
+									<td>%</td>
+								</tr>
+								<tr>
+									<td id="VapDelay" title="задержка работы КЗР подачи пара" class="ui-text-min0-gray69">---</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="Y2Title" class="ui-abs-100 ui-abs-text-x ui-color-gray69" title="второй отсечной газовый клапан (п.7)">п.7</div>
+					<img id="Y2Vl" class="ui-abs-110" src="images/valve2-cl.png" src0="images/valve2-cl.png" src1="images/valve2-op.png" title="второй отсечной газовый клапан (п.7)" />
+					<div id="Y1Title" class="ui-abs-101 ui-abs-text-x ui-color-gray69" title="первый отсечной газовый клапан (п.5)">п.5</div>
+					<img id="Y1Vl" class="ui-abs-110" src="images/valve2-cl.png" src0="images/valve2-cl.png" src1="images/valve2-op.png" title="первый отсечной газовый клапан (п.5)" />
+					<div id="Y3Title" class="ui-abs-102 ui-abs-text-x ui-color-gray69" title="клапан безопасности (п.6)">п.6</div>
+					<img id="Y3Vl" class="ui-abs-110" src="images/valve2r-op.png" src0="images/valve2r-op.png" src1="images/valve2r-cl.png" title="клапан безопасности (п.6)" />
+					<img id="TdrySet" class="ui-abs-100" src="images/tag.png" title="регулятор работает по этому показателю" />
+					<div id="TdryTitle" class="ui-abs-101 ui-abs-text-x ui-color-black" title="температура сухого датчика в ямной камере">T<sub>сух</sub></div>
+					<div id="TwetTitle" class="ui-abs-102 ui-abs-text-x ui-color-black" title="температура влажного датчика в ямной камере">T<sub>влаж</sub></div>
+					<div id="RhTitle" class="ui-abs-103 ui-abs-text-x ui-color-black" title="влажность в ямной камере"><sub>влаж</sub></div>
+					<div id="TdryBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Tdry" title="температура сухого датчика в ямной камере">---</th>
+									<th id="Twet" title="температура влажного датчика в ямной камере">---</th>
+									<th id="Rh" title="влажность в ямной камере">---</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+									<td>&deg;C</td>
+									<td>%</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<img id="TprodSet" class="ui-abs-100" src="images/tag.png" title="регулятор работает по этому показателю" />
+					<img id="TprodProbe" class="ui-abs-110" src="images/probe.png" />
+					<div id="TprodTitle" class="ui-abs-110 ui-abs-text-x ui-color-black" title="температура теплоносителя (продукта)">T<sub>тн</sub></div>
+					<div id="TprodBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Tprod" title="температура теплоносителя (продукта)">---</th>
+								</tr>
+								<tr>
+									<td>&deg;C</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="HzBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Hz" title="частота двигателя рециркуляции">---</th>
+								</tr>
+								<tr>
+									<td>Гц</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<img id="VacProbe" class="ui-abs-110" src="images/probe-meter-hi.png" />
+					<div id="VacBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Vac" title="разрежение в камере горения">---</th>
+								</tr>
+								<tr>
+									<td>Па</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PgBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Pg" title="давление газа горелки">---</th>
+								</tr>
+								<tr>
+									<td>кПа</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="PiBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Pi" title="давление газа на входе">---</th>
+								</tr>
+								<tr>
+									<td>кПа</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="ProgTitle" class="ui-abs-100 ui-abs-text-x ui-color-black" title="номер выбранной программы">прог</div>
+					<div id="StepTitle" class="ui-abs-101 ui-abs-text-x ui-color-black" title="номер текущего шага программы">шаг</div>
+					<div id="StepsTitle" class="ui-abs-102 ui-abs-text-x ui-color-black" title="количество шагов в программе">шагов</div>
+					<div id="ProgBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="Prog" title="номер выбранной программы">---</th>
+									<th id="Step" title="номер текущего шага программы">---</th>
+									<th id="Steps" title="количество шагов в программе">---</th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="RefTitle" class="ui-abs-100 ui-abs-text-r ui-color-gray69">уставка (&deg;C)</div>
+					<div id="StmTitle" class="ui-abs-101 ui-abs-text-r ui-color-gray69">время шага (мин)</div>
+					<div id="OtmTitle" class="ui-abs-102 ui-abs-text-r ui-color-gray69">время работы</div>
+					<div id="CurrTitle" class="ui-abs-100 ui-abs-text-x ui-color-gray69">текущ</div>
+					<div id="TargTitle" class="ui-abs-101 ui-abs-text-x ui-color-gray69">цель</div>
+					<div id="ProcBox" class="ui-abs-120 ui-abs-bar-x">
+						<table class="ui-abs-table-x">
+							<caption />
+							<thead />
+							<tfoot />
+							<tbody>
+								<tr>
+									<th id="RefCurr" title="уставка (текущая)">---</th>
+									<th id="RefTarg" title="уставка (цель)">---</th>
+								</tr>
+								<tr>
+									<th id="StmCurr" title="время шага (минуты, текущее)">---</th>
+									<th id="StmTarg" title="время шага (минуты, цель)">---</th>
+								</tr>
+								<tr>
+									<th id="OpTm" colspan="2" class="ui-text-mid0-gray69" title="время работы">---</th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div id="Stage" class="ui-abs-101 ui-abs-text-z ui-color-black" title="этап работы">---</div>
+					<div id="StageTm" class="ui-abs-102 ui-abs-text-z0 ui-color-gray69" title="время этапа работы"></div>
+				</div>
+			</div>
+			<div id="ExtCase" class="ui-grid-a">
+				<div id="RegParam" class="ui-block-a">
+					<div class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>Регулятор</h3>
+							</div>
+							<div class="ui-body ui-body-a">
+								<table class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr>
+											<td class="ui-table-title ui-table-td-40" title="выход регулятора">Y</td>
+											<td class="ui-table-td-60" id="RegY">---</td>
+										</tr>
+										<tr>
+											<td class="ui-table-title ui-table-td-40" title="длительность управляющего импульса">ШИМ</td>
+											<td class="ui-table-td-60" id="RegDuPls">---</td>
+										</tr>
+										<tr>
+											<td class="ui-table-title ui-table-td-40" title="пульс регулятора">пульс</td>
+											<td class="ui-table-td-60" id="Reg">---</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="OthParam" class="ui-block-b">
+					<div class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>Прочие показатели</h3>
+							</div>
+							<div class="ui-body ui-body-a">
+								<table class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr>
+											<td class="ui-table-title ui-table-td-40" title="время наработки">наработка</td>
+											<td class="ui-table-td-60" id="SeTm">---</td>
+										</tr>
+										<tr>
+											<td class="ui-table-title ui-table-td-40" title="пульс ПЛК">ПЛК</td>
+											<td class="ui-table-td-60" id="Plс" log-res-target="Plс">---</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="LogCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a">
+					<div class="ui-corner-all custom-corners">
+						<div class="ui-bar ui-bar-y">
+							<h3>Журнал событий</h3>
+						</div>
+						<div class="ui-body ui-body-a ui-main-log">
+							<table class="ui-table-z" id="LogTable">
+								<caption />
+								<thead />
+								<tfoot />
+								<tbody />
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /content -->
+	
+	<!-- footer -->
+	<div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+		<a href="index.html" target="_top" rel="external" data-icon="carat-l" data-iconpos="notext" title="Назад к экрану [Термообработка]">Back</a>
+	</div>
+	<!-- /footer -->
+	
+	<!-- nav-panel::left -->
+	<div id="nav-panel-left" data-role="panel" data-position-fixed="true" data-display="push" data-theme="b">
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Назад к экрану</li>
+			<li><a href="index.html" target="_top" rel="external">Термообработка</a></li>
+			<li><a href="../index.html" target="_top" rel="external">Главное меню</a></li>
+		</ul>
+	</div>
+	<!-- /nav-panel::left -->
+	
+	<!-- nav-panel::right -->
+	<div id="nav-panel-right" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a">
+		<form id="FormSet">
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Cервер</li>
+				<li id="WsServerID">---</li>
+				<li id="WsServerUri">---</li>
+				<li id="WsServerState">---</li>
+				<li class="ui-field-contain">
+					<a href="#" id="FormSetConnect" class="ui-btn ui-btn-icon-left ui-icon-disconnected" data-mini="true" title="подключить">подключить</a>
+				</li>
+			</ul>
+			<br />
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Вид</li>
+				<li>
+					<label for="FormSetLog">журнал событий</label>
+					<input type="checkbox" name="log_use" id="FormSetLog" data-mini="true" value="1" checked="true" />
+				</li>
+			</ul>
+		</form>
+	</div>
+	<!-- /nav-panel::right -->
+	
+	<!-- popup widgets -->
+	<div data-role="popup" id="PopupBasic" data-position-to="window" data-overlay-theme="a" data-theme="b" class="ui-content" style="max-width:640px;"> 
+	</div>
+	<!-- /popup widgets -->
+	
+</div>
+<!-- /page -->
+
+
+<!-- JAVASCRIPT CODE -->
+
+<script language="JavaScript">
+
+//** GLOBAL VARIABLES
+
+
+//** FUNCTIONS
+
+function main()
+{
+	initUI();
+}
+
+$(document).ready(main);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+[{"ID":1,
+  "Class":"plc",
+  "BaseAddr":1,
+  "IP": "127.0.0.1",
+  "Port": 502,
+  "Allow":1,
+  "Reconnect":1,
+  "Registers":"C:\\ZVV\\projects\\at09\\ws\\logger\\__test\\etc\\wsscada.conf.d\\plc1.regs.json",
+  "ArhTable": "proc_boil"
+  }
+]

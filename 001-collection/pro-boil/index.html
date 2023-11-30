@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="ATgroup09" />
+<meta name="copyright" content="&copy;ATgroup09, 2019" />
+<meta name="contact" content="atgroup09@gmail.com" />
+<meta name="description" content="Информационный портал (портфолио, предложение по автоматизации)" />
+<meta name="keywords" content="АСУ ТП, АСКУ ТКП, предложение, диспетчеризация, мониторинг, автоматика, автоматизация, котельная, котельные, мнемосхема, мнемосхемы, HMI, ModBus, контроллеры, контроллер, ПЛК, СПК, панель, сенсорные панели, SCADA, ICP DAS, i7000, Овен, Weintek, Schneider Electric, Siemens, M168, HMIS5T, Modicon" />
+<meta name="resource-type" content="document" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- LIBRARIES -->
+<script type="text/javascript" src="../lib/js/regexp/regexp.js"></script>
+<script type="text/javascript" src="../lib/js/types/types.js"></script>
+<script type="text/javascript" src="../lib/js/screen/screen.js"></script>
+<script type="text/javascript" src="../lib/js/dom/dom.js"></script>
+<script type="text/javascript" src="../lib/js/bit.min.js"></script>
+<script type="text/javascript" src="../lib/js/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/js/date.format.min.js"></script>
+<script type="text/javascript" src="../lib/js/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../lib/js/jquery-mobile/jquery.mobile.min.js"></script>
+
+<!-- MODULES -->
+<script type="text/javascript" src="../mod/debug.min.js"></script>
+<script type="text/javascript" src="../mod/log.min.js"></script>
+<script type="text/javascript" src="../mod/popup-dialog.min.js"></script>
+<script type="text/javascript" src="../mod/hmi-v2.min.js"></script>
+<script type="text/javascript" src="../mod/form-v2.min.js"></script>
+<script type="text/javascript" src="res.js"></script>
+<script type="text/javascript" src="main.min.js"></script>
+
+<!-- CSS-styles -->
+<style type="text/css">@import "../lib/js/jquery-mobile/fonts-googleapis-opensans.css";</style>
+<style type="text/css">@import "../lib/js/jquery-mobile/jquery.mobile.min.css";</style>
+<style type="text/css">@import "../lib/js/jquery-mobile/jqm-demos.css";</style>
+<style type="text/css">@import "../lib/js/jquery-ui/jquery-ui.min.css";</style>
+<style type="text/css">@import "main.min.css";</style>
+
+<title>Котельная</title>
+</head>
+
+<body>
+
+<!-- page -->
+<div data-role="page" data-theme="a" class="my-page">
+	
+	<!-- header -->
+	<div data-role="header" data-position="fixed" data-theme="b" data-tap-toggle="false" >
+		<a href="#nav-panel-left" class="ui-btn ui-btn-icon-right ui-icon-bars ui-btn-icon-notext ui-corner-all" title="Меню">Меню</a>
+		<div data-role="controlgroup" data-type="horizontal" class="ui-mini ui-btn-right">
+            <a href="#" class="ui-btn ui-btn-icon-right ui-icon-disconnected ui-btn-icon-notext ui-noactive" id="ConnectState">Связь</a>
+			<a href="#nav-panel-right" class="ui-btn ui-btn-icon-right ui-icon-eye ui-btn-icon-notext" title="Настройки">Настройки</a>
+        </div>
+		<h1><u>Котельная</u></h1>
+	</div>
+	<!-- /header -->
+	
+	<!-- content -->
+	<div role="main" class="ui-content">
+		<div class="ui-bar ui-bar-a ui-corner-all ui-main-placeholder">
+			<div id="RootCase" class="ui-grid-b">
+				<div hmi="case" class="ui-block-a">
+					<div hmi="case-bar" class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>
+									<a class="ui-bar-y-a" href="boil1/index.html" rel="external">Объект #1</a>
+								</h3>
+							</div>
+							<div hmi="case-body" class="ui-body ui-body-a">
+								<table hmi="case-table" class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">отопление</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: температура подачи">T подачи</td>
+											<td hmi="value" class="ui-table-td-30" id="Tset1">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: давление подачи">P подачи</td>
+											<td hmi="value" class="ui-table-td-30" id="Pset1">---</td>
+											<td class="ui-table-title ui-table-td-15">бар</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: температура возврата">T возвр.</td>
+											<td hmi="value" class="ui-table-td-30" id="Tret1">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: давление возврата">P возвр.</td>
+											<td hmi="value" class="ui-table-td-30" id="Pret1">---</td>
+											<td class="ui-table-title ui-table-td-15">бар</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">местное</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="температура в помещении">T</td>
+											<td hmi="value" class="ui-table-td-30" id="Tloc1">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										</tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">состояние</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" colspan="3" id="St1">---</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-view">
+												<a href="boil1/index.html" rel="external" title="подробный обзор">подробно</a>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div hmi="case" class="ui-block-b">
+					<div hmi="case-bar" class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>
+									<a class="ui-bar-y-a" href="pro-boil2/index.html" rel="external">Объект #2</a>
+								</h3>
+							</div>
+							<div hmi="case-body" class="ui-body ui-body-a">
+								<table hmi="case-table" class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">отопление</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: температура подачи">T подачи</td>
+											<td hmi="value" class="ui-table-td-30" id="Tset2">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: давление подачи">P подачи</td>
+											<td hmi="value" class="ui-table-td-30" id="Pset2">---</td>
+											<td class="ui-table-title ui-table-td-15">бар</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: температура возврата">T возвр.</td>
+											<td hmi="value" class="ui-table-td-30" id="Tret2">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: давление возврата">P возвр.</td>
+											<td hmi="value" class="ui-table-td-30" id="Pret2">---</td>
+											<td class="ui-table-title ui-table-td-15">бар</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">местное</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="температура в помещении">T</td>
+											<td hmi="value" class="ui-table-td-30" id="Tloc2">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">состояние</th>
+										<tr hmi="case-table-row">
+											<td hmi="value" colspan="3" id="St2">---</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-view">
+												<a href="boil2/index.html" rel="external" title="подробный обзор">подробно</a>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div hmi="case" class="ui-block-c">
+					<div hmi="case-bar" class="ui-bar ui-bar-a">
+						<div class="ui-corner-all custom-corners">
+							<div class="ui-bar ui-bar-y">
+								<h3>
+									<a class="ui-bar-y-a" href="pro-boil3/index.html" rel="external">Объект #3</a>
+								</h3>
+							</div>
+							<div hmi="case-body" class="ui-body ui-body-a">
+								<table hmi="case-table" class="ui-table-z">
+									<caption />
+									<thead />
+									<tfoot />
+									<tbody>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">отопление</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: температура подачи">T подачи</td>
+											<td hmi="value" class="ui-table-td-30" id="Tset3">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: давление подачи">P подачи</td>
+											<td hmi="value" class="ui-table-td-30" id="Pset3">---</td>
+											<td class="ui-table-title ui-table-td-15">бар</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: температура возврата">T возвр.</td>
+											<td hmi="value" class="ui-table-td-30" id="Tret3">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="отопление: давление возврата">P возвр.</td>
+											<td hmi="value" class="ui-table-td-30" id="Pret3">---</td>
+											<td class="ui-table-title ui-table-td-15">бар</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">местное</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="температура в помещении">T</td>
+											<td hmi="value" class="ui-table-td-30" id="Tloc3">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<th colspan="3" class="ui-table-caption ui-table-title-center">контур котлов</th>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="температура контура">T</td>
+											<td hmi="value" class="ui-table-td-30" id="Tcont3">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<th colspan="3" class="ui-table-caption ui-table-title-center">ГВС</th>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="ГВС: температура подачи">T подачи</td>
+											<td hmi="value" class="ui-table-td-30" id="TsetHw3">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="ГВС: температура возврата">T возвр.</td>
+											<td hmi="value" class="ui-table-td-30" id="TretHw3">---</td>
+											<td class="ui-table-title ui-table-td-15">C&deg;</td>
+										</tr>
+										<tr hmi="case-table-row">
+											<td class="ui-table-title ui-table-td-55" title="ГВС: давление в системе">P</td>
+											<td hmi="value" class="ui-table-td-30" id="Pcw3">---</td>
+											<td class="ui-table-title ui-table-td-15">бар</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-caption ui-table-title-center">состояние</th>
+										</tr>
+										<tr hmi="case-table-row">
+											<td hmi="value" colspan="3" id="St3">---</td>
+										</tr>
+										<tr>
+											<th colspan="3" class="ui-table-view">
+												<a href="boil3/index.html" rel="external" title="подробный обзор">подробно</a>
+											</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="LogCase" class="ui-grid-solo">
+				<div class="ui-bar ui-bar-a">
+					<div class="ui-corner-all custom-corners">
+						<div class="ui-bar ui-bar-y">
+							<h3>Журнал событий</h3>
+						</div>
+						<div class="ui-body ui-body-a ui-main-log">
+							<table class="ui-table-z" id="LogTable">
+								<caption />
+								<thead />
+								<tfoot />
+								<tbody />
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /content -->
+	
+	<!-- footer -->
+	<div data-role="footer" data-position="fixed" data-theme="b" data-tap-toggle="false">
+		<a href="../index.html" rel="external" data-icon="carat-l" data-iconpos="notext" title="Назад к экрану [Главное меню]">Back</a>
+	</div>
+	<!-- /footer -->
+	
+	<!-- nav-panel::left -->
+	<div id="nav-panel-left" data-role="panel" data-position-fixed="true" data-display="push" data-theme="b">
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Подробно</li>
+			<li><a href="boil1/index.html" rel="external">Объект #1</a></li>
+			<li><a href="boil2/index.html" rel="external">Объект #2</a></li>
+			<li><a href="boil3/index.html" rel="external">Объект #3</a></li>
+			<li><a href="review.html" rel="external" title="циклический обзор всех объектов с периодом в 1 минуту">Обзор</a></li>
+		</ul>
+		<ul data-role="listview" data-inset="true" data-divider-theme="a">
+			<li data-role="list-divider">Назад к экрану</li>
+			<li><a href="../index.html" rel="external">Главное меню</a></li>
+		</ul>
+	</div>
+	<!-- /nav-panel::left -->
+	
+	<!-- nav-panel::right -->
+	<div id="nav-panel-right" data-role="panel" data-position="right" data-position-fixed="true" data-display="overlay" data-theme="a">
+		<form id="FormSet">
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Cервер</li>
+				<li id="WsServerID">---</li>
+				<li id="WsServerUri">---</li>
+				<li id="WsServerState">---</li>
+				<li class="ui-field-contain">
+					<a href="#" id="FormSetConnect" class="ui-btn ui-btn-icon-left ui-icon-disconnected" data-mini="true" title="подключить">подключить</a>
+				</li>
+			</ul>
+			<br />
+			<ul data-role="listview" data-inset="true">
+				<li data-role="list-divider">Вид</li>
+				<li>
+					<label for="FormSetLog">журнал событий</label>
+					<input type="checkbox" name="log_use" id="FormSetLog" data-mini="true" value="1" checked="true" />
+				</li>
+			</ul>
+		</form>
+	</div>
+	<!-- /nav-panel::right -->
+	
+	<!-- popup widgets -->
+	<div data-role="popup" id="PopupBasic" data-position-to="window" data-overlay-theme="a" data-theme="b" class="ui-content" style="max-width:640px;"> 
+	</div>
+	<!-- /popup widgets -->
+	
+</div>
+<!-- /page -->
+
+
+<!-- JAVASCRIPT CODE -->
+
+<script language="JavaScript">
+
+//** GLOBAL VARIABLES
+
+
+//** FUNCTIONS
+
+function main()
+{
+	initUI();
+}
+
+$(document).ready(main);
+
+</script>
+
+</body>
+</html>

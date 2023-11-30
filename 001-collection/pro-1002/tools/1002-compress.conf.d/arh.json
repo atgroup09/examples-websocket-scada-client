@@ -1,0 +1,11 @@
+{ "Host":"127.0.0.1",
+  "Port":3306,
+  "User":"root",
+  "Passwd":"root999",
+  "Db":"compress",
+  "Profile":"1min",
+  "UseLog":1,
+  "UseLogEvent":1,
+  "Log":"C:\\ASUTP\\Server\\wslogger\\log\\1002-compress.arh.log",
+  "LogEvent":"C:\\ASUTP\\Server\\wslogger\\log\\1002-compress.ev.log"
+}

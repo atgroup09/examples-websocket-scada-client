@@ -1,0 +1,5 @@
+[ { "ID":50, "Addr":50, "Class":"in", "Type":"word", "Var":"RampPlc", "Allow":"r|h|d", "Value":1, "RandMin":1, "RandMax":1000 },
+  { "ID":51, "Addr":51, "Class":"in", "Type":"word", "Var":"P", "Allow":"r|h|d", "Value":60, "RandMin":60, "RandMax":61 },
+  { "ID":52, "Addr":52, "Class":"in", "Type":"word", "Var":"Tr", "Allow":"r|h|d", "Value":24, "RandMin":24, "RandMax":25 },
+  { "ID":53, "Addr":53, "Class":"const", "Type":"word", "Var":"Tc", "Allow":"h", "Value":36 }
+]

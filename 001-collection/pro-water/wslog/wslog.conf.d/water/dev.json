@@ -1,0 +1,6 @@
+[ {"ID":1,
+   "Class":"dummy",
+   "Allow":1,
+   "Registers":"/usr/local/etc/wslog.conf.d/water/reg.json"
+   }
+]

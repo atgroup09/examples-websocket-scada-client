@@ -1,0 +1,13 @@
+[Unit]
+Description=wslog-boil2
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/wslog-boil2 --config /usr/local/etc/wslog.conf.d/boil2/config.json --sname WsLogBoil2 --sdesc WsLogBoil2
+User=opi
+Group=opi
+StandardOutput=syslog
+
+[Install]
+WantedBy=multi-user.target

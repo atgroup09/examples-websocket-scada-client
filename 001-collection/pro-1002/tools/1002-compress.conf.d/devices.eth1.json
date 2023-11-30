@@ -1,0 +1,11 @@
+[{"ID":1,
+  "Class":"plc",
+  "BaseAddr":1,
+  "IP": "192.168.1.104",
+  "Port": 502,
+  "Allow":1,
+  "Reconnect":1,
+  "Registers":"C:\\ASUTP\\Server\\wslogger\\etc\\1002-compress.conf.d\\plc1.regs.json",
+  "ArhTable": "Tb_compress"
+  }
+]

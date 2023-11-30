@@ -1,0 +1,10 @@
+[ {"ID":1, "Addr":1, "Class":"const", "Type":"word", "Var":"WsDI01", "Allow":"h", "Value":151 },
+  {"ID":2, "Addr":2, "Class":"const", "Type":"word", "Var":"WsSt", "Allow":"h", "Value":21 },
+  {"ID":3, "Addr":3, "Class":"const", "Type":"word", "Var":"WsErNet", "Allow":"h", "Value":0 },
+  {"ID":4, "Addr":4, "Class":"const", "Type":"word", "Var":"WsErSens", "Allow":"h", "Value":0 },
+  {"ID":5, "Addr":5, "Class":"const", "Type":"word", "Var":"Lv1", "Allow":"h", "Value":3 },
+  {"ID":6, "Addr":6, "Class":"const", "Type":"word", "Var":"Lv2", "Allow":"h", "Value":1 },
+  {"ID":7, "Addr":7, "Class":"in", "Type":"word", "Var":"T1", "Allow":"r|h|d", "Value":18, "RandMin":18, "RandMax":19 },
+  {"ID":8, "Addr":8, "Class":"in", "Type":"word", "Var":"T2", "Allow":"r|h|d", "Value":18, "RandMin":17, "RandMax":18 },
+  {"ID":9, "Addr":9, "Class":"in", "Type":"word", "Var":"Plc", "Allow":"r|h|d", "Value":0, "RandMin":1, "RandMax":1000 }
+]

@@ -1,0 +1,8 @@
+[{ "ID":1,  "Addr":0, "Var":"K1TSt", "Class":"inpt", "Type":"word", "Allow":"r|h" },
+ { "ID":2,  "Addr":1, "Var":"K1TPd", "Class":"inpt", "Type":"word", "Allow":"r|h" },
+ { "ID":3,  "Addr":2, "Var":"K1TOil", "Class":"inpt", "Type":"word", "Allow":"r|h" },
+ { "ID":4,  "Addr":3, "Var":"K1PAir", "Class":"inpt", "Type":"word", "Allow":"r|h" },
+ { "ID":5,  "Addr":4, "Var":"K1Mode", "Class":"inpt", "Type":"word", "Allow":"r|h" },
+ { "ID":6,  "Addr":0, "Var":"K1FlAir", "Class":"disc", "Type":"bool", "Allow":"r|h" },
+ { "ID":7,  "Addr":1, "Var":"K1LvOil", "Class":"disc", "Type":"bool", "Allow":"r|h" }
+]

@@ -1,0 +1,13 @@
+[Unit]
+Description=wsscada
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/wsscada --config /usr/local/etc/wsscada.conf.d/config.json --sname wsSCADA --sdesc wsSCADA
+User=at09
+Group=at09
+StandardOutput=syslog
+
+[Install]
+WantedBy=multi-user.target

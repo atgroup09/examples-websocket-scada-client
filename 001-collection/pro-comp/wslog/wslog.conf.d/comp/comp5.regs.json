@@ -1,0 +1,8 @@
+[ { "ID":28, "Addr":28, "Class":"const", "Type":"word", "Var":"St5", "Allow":"h", "Value":3 },
+  { "ID":29, "Addr":29, "Class":"const", "Type":"word", "Var":"I5",  "Allow":"h", "Value":0 },
+  { "ID":30, "Addr":30, "Class":"const", "Type":"word", "Var":"Tv5", "Allow":"h", "Value":38 },
+  { "ID":31, "Addr":31, "Class":"const", "Type":"word", "Var":"To5", "Allow":"h", "Value":42 },
+  { "ID":32, "Addr":32, "Class":"in", "Type":"word", "Var":"Ts5", "Allow":"r|h|d", "Value":39, "RandMin":38, "RandMax":39 },
+  { "ID":33, "Addr":33, "Class":"const", "Type":"word", "Var":"Ws5", "Allow":"h", "Value":1280 },
+  { "ID":34, "Addr":34, "Class":"const", "Type":"word", "Var":"Al5", "Allow":"h", "Value":4 }
+]
