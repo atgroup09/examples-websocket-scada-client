@@ -1,0 +1,205 @@
+/*	CSS DOCUMENT
+*	UTF-8
+*/
+
+/*  pro-client
+*   wsSCADA client / UI styles
+*   2024
+*
+*   The JavaScript code in this page is free software: you can
+*   redistribute it and/or modify it under the terms of the GNU
+*   General Public License (GNU GPL) as published by the Free Software
+*   Foundation, either version 3 of the License, or (at your option)
+*   any later version.  The code is distributed WITHOUT ANY WARRANTY;
+*   without even the implied warranty of MERCHANTABILITY or FITNESS
+*   FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+*
+*   As additional permission under GNU GPL version 3 section 7, you
+*   may distribute non-source (e.g., minimized or compacted) forms of
+*   that code without the copy of the GNU GPL normally required by
+*   section 4, provided you include this license notice and a URL
+*   through which recipients can access the Corresponding Source.
+*/
+
+
+.ui-main-placeholder-loc {
+	width: 1069px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.ui-table-m {
+	border-collapse: collapse;
+	width: 200px;
+}
+
+.ui-table-m TBODY TD {
+	border-width: 1px;
+    border-style: solid;
+	border-color: #000000;
+	font-size: 0.75em;
+}
+
+.ui-title-m {
+	font-size: 0.85em;
+}
+
+.ui-title-m1 {
+	font-size: 0.75em;
+}
+
+.ui-table-m-td-title {
+	font-size: 0.75em;
+	width: 70px;
+}
+
+.ui-table-m-td-value {
+	font-size: 0.85em;
+	width: 80px;
+}
+
+.ui-table-m-td-dimension {
+	font-size: 0.75em;
+	width: 50px;
+}
+
+
+#BL1_title {
+	left: 40px;
+    top: 10px;
+}
+
+#BL1_box {
+    left: 40px;
+    top: 30px;
+}
+
+
+#BL2_title {
+	left: 340px;
+    top: 10px;
+}
+
+#BL2_1_title {
+    left: 340px;
+    top: 33px;
+}
+
+#BL2_1 {
+    left: 343px;
+    top: 50px;
+}
+
+#BL2_2_title {
+    left: 400px;
+    top: 33px;
+}
+
+#BL2_2 {
+    left: 403px;
+    top: 50px;
+}
+
+#BL2_3_title {
+    left: 460px;
+    top: 33px;
+}
+
+#BL2_3 {
+    left: 463px;
+    top: 50px;
+}
+
+
+#BL3_title {
+	left: 600px;
+    top: 10px;
+}
+
+#BL3_1_title {
+    left: 600px;
+    top: 33px;
+}
+
+#BL3_1 {
+    left: 603px;
+    top: 53px;
+}
+
+#BL3_2_title {
+    left: 690px;
+    top: 33px;
+}
+
+#BL3_2 {
+    left: 663px;
+    top: 53px;
+}
+
+
+#NUM1_title {
+	left: 40px;
+    top: 200px;
+}
+
+#NUM1_box {
+    left: 40px;
+    top: 220px;
+}
+
+
+#NUM2_title {
+	left: 340px;
+    top: 200px;
+}
+
+#NUM2_1_title {
+	left: 360px;
+    top: 223px;
+}
+
+#NUM2_1_box {
+    left: 340px;
+    top: 240px;
+}
+
+#NUM2_2_box {
+	left: 450px;
+    top: 226px;
+}
+
+
+#STR_title {
+	left: 40px;
+    top: 330px;
+}
+
+#STR {
+	left: 40px;
+    top: 353px;
+}
+
+
+#COLOR_title {
+	left: 340px;
+    top: 330px;
+}
+
+#COLOR {
+	left: 340px;
+    top: 353px;
+	text-align: left;
+	width: 100px;
+}
+
+.ui-bg-none {
+	background-color: transparent;
+}
+
+.ui-bg-yellow {
+	background-color: yellow;
+}
+
+.ui-bg-red {
+	background-color: red;
+}
